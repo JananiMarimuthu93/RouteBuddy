@@ -56,8 +56,8 @@ namespace UserCrudApp
             string password = Console.ReadLine();
             Console.Write("Enter Phone: ");
             string phone = Console.ReadLine();
-            Console.Write("Enter Role: (traveller,vendor,admin)");
-            string role = Console.ReadLine();
+            Console.Write("Enter Role (traveller, vendor, admin): ");
+            string role = Console.ReadLine().Trim().ToLower();
 
             EstablishConnection();
             string query = "INSERT INTO Users (Name, Email, Password, Phone, Role, UpdatedAt) " +
