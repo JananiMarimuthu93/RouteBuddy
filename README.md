@@ -1,0 +1,1 @@
+This repository is a practice collection of backend projects built around the Bus Booking System concept, using different .NET technologies. The goal is to explore and master various backend development approaches from basic console CRUD to modern ASP.NET Core APIs — while working on the same domain idea.
