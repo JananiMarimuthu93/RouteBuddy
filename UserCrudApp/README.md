@@ -31,6 +31,13 @@ CREATE TABLE Users (
     Email NVARCHAR(100) UNIQUE NOT NULL,
     Password NVARCHAR(255) NOT NULL,
     Phone NVARCHAR(15),
-    Role NVARCHAR(50),
-    UpdatedAt DATETIME
+    Role NVARCHAR(20) CHECK (Role IN ('traveller', 'vendor', 'admin')) NOT NULL,
+    CreatedAt DATETIME DEFAULT GETDATE(),
+    UpdatedAt DATETIME DEFAULT GETDATE()
 );
+
+ALTER TABLE Users DROP CONSTRAINT CK__Users__Role__38996AB5;
+
+ALTER TABLE Users
+ADD CONSTRAINT CK_Users_Role
+CHECK (LOWER(Role) IN ('traveller', 'vendor', 'admin'));
