@@ -9,7 +9,7 @@ namespace UserCrudApp
         {
             if (_connection == null || _connection.State == ConnectionState.Closed)
             {
-                String ConnectionString = "server=KDJ-LAPTOP\\SQLEXPRESS;database=KANINI;integrated security=true;trustservercertificate=true";
+                String ConnectionString = "server=KDJ-LAPTOP\\SQLEXPRESS;database=RouteBuddy;integrated security=true;trustservercertificate=true";
                 _connection = new SqlConnection(ConnectionString);
                 _connection.Open();
             }
@@ -56,7 +56,7 @@ namespace UserCrudApp
             string password = Console.ReadLine();
             Console.Write("Enter Phone: ");
             string phone = Console.ReadLine();
-            Console.Write("Enter Role: ");
+            Console.Write("Enter Role: (traveller,vendor,admin)");
             string role = Console.ReadLine();
 
             EstablishConnection();
@@ -84,10 +84,13 @@ namespace UserCrudApp
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    Console.WriteLine("\nID\tName\tEmail\tPhone\tRole\tUpdatedAt");
                     while (reader.Read())
                     {
-                        Console.WriteLine($"{reader["UserID"]}\t{reader["Name"]}\t{reader["Email"]}\t{reader["Phone"]}\t{reader["Role"]}\t{reader["UpdatedAt"]}");
+                        Console.WriteLine($"Name: {reader["Name"]}");
+                        Console.WriteLine($"Email: {reader["Email"]}");
+                        Console.WriteLine($"Phone: {reader["Phone"]}");
+                        Console.WriteLine($"Role: {reader["Role"]}");
+                        Console.WriteLine();
                     }
                 }
             }
@@ -112,7 +115,6 @@ namespace UserCrudApp
                         Console.WriteLine($"Email: {reader["Email"]}");
                         Console.WriteLine($"Phone: {reader["Phone"]}");
                         Console.WriteLine($"Role: {reader["Role"]}");
-                        Console.WriteLine($"Updated At: {reader["UpdatedAt"]}");
                     }
                     else
                     {
